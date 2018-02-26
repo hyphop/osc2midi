@@ -9,5 +9,5 @@ just `./build` or
 
 ## DEPS
 
-* lilo
+* liblo
 
