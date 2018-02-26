@@ -1,0 +1,26 @@
+#!/bin/sh
+
+## hyphop ##
+
+[ "$GCC" ] || GCC=gcc
+[ "$STRIP" ] || STRIP=strip
+
+[ "$libs" ] || libs=`pkg-config --libs liblo`
+
+[ "$libs" ] || {
+	echo "[e] not defined lilo / maybe need to install `apt-get install liblo-dev`"
+}
+
+name=osc2midi
+cmd="$GCC -o bin/$name src/$name.c $libs"
+
+echo "[BUILD] $name"
+echo "================"
+echo $cmd
+echo ""
+
+$cmd && {
+	[ "1" ] && $STRIP bin/$name 
+	echo "[OK] bin/$name - is ready"
+}
+
